@@ -19,11 +19,13 @@
           <i class="fas fa-fw fa-user mr-2"></i> Profile
         </a>
         <div class="dropdown-divider"></div>
+        <a href="/" target="_blank" class="dropdown-item">
+          <i class="fas fa-fw fa-home mr-2"></i> Website
+        </a>
+        <div class="dropdown-divider"></div>
         <a href="javascript:void(0)" class="dropdown-item" data-toggle="modal" data-target="#exampleModal">
           <i class="fas fa-fw fa-sign-out-alt mr-2"></i> Logout
         </a>
-        <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
       </div>
     </li>
   </ul>
