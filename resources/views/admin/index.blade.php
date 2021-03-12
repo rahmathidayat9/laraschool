@@ -24,7 +24,7 @@
     <!-- small box -->
     <div class="small-box bg-success">
       <div class="inner">
-        <h3>9</h3>
+        <h3>@count('artikel')</h3>
 
         <p>Artikel</p>
       </div>
@@ -39,7 +39,7 @@
     <!-- small box -->
     <div class="small-box bg-warning">
       <div class="inner">
-        <h3>7</h3>
+        <h3>@count('pengumuman')</h3>
 
         <p>Pengumuman</p>
       </div>
@@ -54,7 +54,7 @@
     <!-- small box -->
     <div class="small-box bg-danger">
       <div class="inner">
-        <h3>5</h3>
+        <h3>@count('agenda')</h3>
 
         <p>Agenda</p>
       </div>
