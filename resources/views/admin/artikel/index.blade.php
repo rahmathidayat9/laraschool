@@ -20,7 +20,8 @@
                 <tr>
                   <th>No</th>
                   <th>Judul</th>
-                  <th>Tgl Upload</th>
+                  <th>Author</th>
+                  <th>Kategori</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -33,18 +34,25 @@
                 <tr>
                   <td>{{ $no++ }}</td>
                   <td>{{ $art->judul }}</td>
-                  <td>{{ $art->judul }}</td>
+                  <td>{{ $art->user->name }}</td>
+                  <td>{{ $art->kategoriArtikel->nama_kategori }}</td>
                   
                   <td>
+                    @if(auth()->user()->id == $art->user_id)
                     <div class="row ml-2">
-                        <a href="{{ route('admin.artikel.edit',$art->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit fa-fw"></i></a>
-
-                        <form method="POST" action="{{ route('admin.artikel.destroy',$art->id) }}">
+                        <a href="{{ route('admin.pengumuman.edit',$art->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit fa-fw"></i></a>
+                        
+                        <form method="POST" action="{{ route('admin.pengumuman.destroy',$art->id) }}">
                             @csrf
                             @method('DELETE')
                             <button onclick="return confirm('Yakin hapus ?')" type="submit" class="btn btn-danger btn-sm ml-2"><i class="fas fa-trash fa-fw"></i></button>
                         </form>
                     </div>
+                    @else
+                    <a href="javasript:void(0)" class="btn btn-danger btn-sm">
+                    <i class="fas fa-ban"></i> No Action Available
+                    </a>
+                    @endif
                   </td>
                 </tr>
                 @endforeach

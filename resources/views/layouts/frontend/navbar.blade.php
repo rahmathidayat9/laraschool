@@ -4,7 +4,7 @@
         <nav class="classy-navbar justify-content-between" id="cleverNav">
 
             <!-- Logo -->
-            <a class="nav-brand" href="index.html"><img src="{{ asset('templates/frontend/clever') }}/img/core-img/logo.png" alt=""></a>
+            <a class="nav-brand" href="/"><img src="{{ asset('img/icons') }}/laravel.jpg" width="50" alt=""> LARASCHOOL</a>
 
             <!-- Navbar Toggler -->
             <div class="classy-navbar-toggler">
@@ -25,15 +25,15 @@
                         <li><a href="/" class="{{ Request::is('/') || Request::is('home') ? 'text-primary' : '' }}">Home</a></li>
                         <li><a href="{{ route('about') }}" class="{{ Request::is('about') ? 'text-primary' : '' }}">Tentang</a></li>
                         <li><a href="{{ route('contact') }}" class="{{ Request::is('contact') ? 'text-primary' : '' }}">Kontak</a></li>
-                        <li><a href="{{ route('articles') }}" class="{{ Request::is('articles') ? 'text-primary' : '' }}">Artikel</a></li>
-                        <li><a href="" class="{{ Request::is('pengumuman') ? 'text-primary' : '' }}">Pengumuman</a></li>
+                        <li><a href="{{ route('artikel') }}" class="{{ Request::segment(1) == 'artikel' ? 'text-primary' : '' }}">Artikel</a></li>
+                        <li><a href="{{ route('pengumuman') }}" class="{{ Request::segment(1) == 'pengumuman' ? 'text-primary' : '' }}">Pengumuman</a></li>
                         <li><a href="" class="{{ Request::is('agenda') ? 'text-primary' : '' }}">Agenda</a></li>
                     </ul>
 
                     <!-- Search Button -->
                     <div class="search-area">
-                        <form action="#" method="post">
-                            <input type="search" name="search" id="search" placeholder="Search">
+                        <form action="{{ route('artikel.search') }}" method="GET">
+                            <input name="keyword" id="search" placeholder="Search">
                             <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                         </form>
                     </div>

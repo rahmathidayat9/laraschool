@@ -6,7 +6,7 @@
                 <div class="col-12">
                     <!-- Footer Logo -->
                     <div class="footer-logo">
-                        <a href="index.html"><img src="{{ asset('templates/frontend/clever') }}/img/core-img/logo2.png" alt=""></a>
+                        <a href="/"><h3 class="text-light">LARASCHOOL</h3></a>
                     </div>
                     <!-- Copywrite -->
                     <p><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->

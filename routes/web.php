@@ -11,7 +11,9 @@ use App\Http\Controllers\Admin\UsersController;
 
 //Controllers Namespace
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\AgendaController;
+use App\Http\Controllers\ArtikelController;
+use App\Http\Controllers\PengumumanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,9 +32,15 @@ Route::get('/home',[HomeController::class,'index'])->name('home');
 Route::get('/about',[HomeController::class,'about'])->name('about');
 Route::get('/contact',[HomeController::class,'contact'])->name('contact');
 
-//Article
-Route::get('/articles',[ArticleController::class,'index'])->name('articles');
-Route::get('/articles/{slug}',[ArticleController::class,'show']);
+//Artikel
+Route::get('/artikel',[ArtikelController::class,'index'])->name('artikel');
+Route::get('/artikel/search',[ArtikelController::class,'search'])->name('artikel.search');
+
+Route::get('/artikel/{artikel:slug}',[ArtikelController::class,'show'])->name('artikel.show');
+
+//Pengumuman
+Route::get('/pengumuman',[PengumumanController::class,'index'])->name('pengumuman');
+Route::get('/pengumuman/{pengumuman:slug}',[PengumumanController::class,'show'])->name('pengumuman.show');
 
 //Admin
 Route::group(['namespace' => 'Admin','prefix' => 'admin','middleware' => ['auth']],function(){
@@ -47,5 +55,6 @@ Route::group(['namespace' => 'Admin','prefix' => 'admin','middleware' => ['auth'
 		Route::resource('pengumuman','PengumumanController');
 		Route::resource('agenda','AgendaController');
 		Route::resource('artikel','ArtikelController');
+		Route::resource('kategori-artikel','KategoriArtikelController');
 	});
 });

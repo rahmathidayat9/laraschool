@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Services\SummernoteService;
 use App\Services\UploadService;
 use App\Models\Artikel;
+use App\Models\KategoriArtikel;
 use Str;
 
 class ArtikelController extends Controller
@@ -27,7 +28,7 @@ class ArtikelController extends Controller
      */
     public function index()
     {
-        $artikel = Artikel::all();
+        $artikel = Artikel::with(['user','kategoriArtikel'])->get();
         return view('admin.artikel.index',compact('artikel'));
     }
 
@@ -38,7 +39,8 @@ class ArtikelController extends Controller
      */
     public function create()
     {
-        return view('admin.artikel.create');
+        $kategoriArtikel = KategoriArtikel::all();
+        return view('admin.artikel.create',compact('kategoriArtikel'));
     }
 
     /**
@@ -53,8 +55,9 @@ class ArtikelController extends Controller
             'judul' => $request->judul,
             'deskripsi' => $this->summernoteService->imageUpload('artikel'),
             'thumbnail' => $this->uploadService->imageUpload('artikel'),
-            'slug' => Str::slug('judul'),
+            'slug' => Str::slug($request->judul),
             'user_id' => auth()->user()->id,
+            'kategori_artikel_id' => $request->kategori_artikel_id,
         ]);
 
         return redirect()->route('admin.artikel.index')->with('success','Data berhasil ditambah');
@@ -91,11 +94,15 @@ class ArtikelController extends Controller
      */
     public function update(Request $request, Artikel $artikel)
     {
-        $artikel->update([
+        $this->authorize('update',$artikel);
+
+        Artikel::create([
+            'judul' => $request->judul,
             'deskripsi' => $this->summernoteService->imageUpload('artikel'),
             'thumbnail' => $this->uploadService->imageUpload('artikel'),
-            'slug' => Str::slug('judul'),
+            'slug' => Str::slug($request->judul),
             'user_id' => auth()->user()->id,
+            'kategori_artikel_id' => $request->kategori_artikel_id,
         ]);
            
         return redirect()->route('admin.artikel.index')->with('success','Data berhasil diupdate');
@@ -109,6 +116,8 @@ class ArtikelController extends Controller
      */
     public function destroy(Artikel $artikel)
     {   
+        $this->authorize('delete',$artikel);
+
         $artikel->delete();
         return redirect()->route('admin.artikel.index')->with('success','Data berhasil dihapus');
     }

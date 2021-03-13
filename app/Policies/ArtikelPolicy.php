@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Pengumuman;
+use App\Models\Artikel;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class PengumumanPolicy
+class ArtikelPolicy
 {
     use HandlesAuthorization;
 
@@ -18,19 +18,19 @@ class PengumumanPolicy
      */
     public function viewAny(User $user)
     {
-
+        //
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Pengumuman  $pengumuman
+     * @param  \App\Models\Artikel  $artikel
      * @return mixed
      */
-    public function view(User $user, Pengumuman $pengumuman)
+    public function view(User $user, Artikel $artikel)
     {
-
+        //
     }
 
     /**
@@ -48,34 +48,34 @@ class PengumumanPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Pengumuman  $pengumuman
+     * @param  \App\Models\Artikel  $artikel
      * @return mixed
      */
-    public function update(User $user, Pengumuman $pengumuman)
+    public function update(User $user, Artikel $artikel)
     {
-        return $user->id == $pengumuman->user_id;
+        return $user->id == $artikel->user_id;   
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Pengumuman  $pengumuman
+     * @param  \App\Models\Artikel  $artikel
      * @return mixed
      */
-    public function delete(User $user, Pengumuman $pengumuman)
+    public function delete(User $user, Artikel $artikel)
     {
-        return $user->id == $pengumuman->user_id;
+        return $user->id == $artikel->user_id;   
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Pengumuman  $pengumuman
+     * @param  \App\Models\Artikel  $artikel
      * @return mixed
      */
-    public function restore(User $user, Pengumuman $pengumuman)
+    public function restore(User $user, Artikel $artikel)
     {
         //
     }
@@ -84,10 +84,10 @@ class PengumumanPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Pengumuman  $pengumuman
+     * @param  \App\Models\Artikel  $artikel
      * @return mixed
      */
-    public function forceDelete(User $user, Pengumuman $pengumuman)
+    public function forceDelete(User $user, Artikel $artikel)
     {
         //
     }

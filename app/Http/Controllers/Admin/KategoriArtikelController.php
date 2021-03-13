@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Models\Agenda;
+use App\Models\KategoriArtikel;
 use Str;
 
-class AgendaController extends Controller
+class KategoriArtikelController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,8 @@ class AgendaController extends Controller
      */
     public function index()
     {
-        $agenda = Agenda::all();
-        return view('admin.agenda.index',compact('agenda'));
+        $kategoriArtikel = KategoriArtikel::all();
+        return view('admin.kategori-artikel.index',compact('kategoriArtikel'));
     }
 
     /**
@@ -28,7 +28,7 @@ class AgendaController extends Controller
      */
     public function create()
     {
-        return view('admin.agenda.create');
+        return view('admin.kategori-artikel.create');
     }
 
     /**
@@ -39,14 +39,11 @@ class AgendaController extends Controller
      */
     public function store(Request $request)
     {
-        $request->request->add([
-            'tgl' => date('Y-m-d'),
-            'slug' => Str::slug($request->judul),
-            'user_id' => auth()->user()->id,
+        KategoriArtikel::create([
+            'nama_kategori' => $request->nama_kategori,
+            'slug' => Str::slug($request->nama_kategori),
         ]);
-        Agenda::create($request->all());
-
-        return redirect()->route('admin.agenda.index')->with('success','Data berhasil ditambah');
+        return redirect()->route('admin.kategori-artikel.index')->with('success','Data berhasil ditambah');
     }
 
     /**
@@ -66,9 +63,9 @@ class AgendaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Agenda $agenda)
+    public function edit(KategoriArtikel $kategoriArtikel)
     {
-        return view('admin.agenda.edit',compact('agenda'));
+        return view('admin.kategori-artikel.edit',compact('kategoriArtikel'));
     }
 
     /**
@@ -78,16 +75,10 @@ class AgendaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Agenda $agenda)
+    public function update(Request $request, KategoriArtikel $kategoriArtikel)
     {
-        $request->request->add([
-            'tgl' => date('Y-m-d'),
-            'slug' => Str::slug($request->judul),
-            'user_id' => auth()->user()->id,
-        ]);
-        $agenda->update($request->all());
-           
-        return redirect()->route('admin.agenda.index')->with('success','Data berhasil diupdate');
+        $kategoriArtikel->update($request->all());
+        return redirect()->route('admin.kategori-artikel.index')->with('success','Data berhasil diupdate');
     }
 
     /**
@@ -96,9 +87,9 @@ class AgendaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Agenda $agenda)
+    public function destroy(KategoriArtikel $kategoriArtikel)
     {   
-        $agenda->delete();
-        return redirect()->route('admin.agenda.index')->with('success','Data berhasil dihapus');
+        $kategoriArtikel->delete();
+        return redirect()->route('admin.kategori-artikel.index')->with('success','Data berhasil dihapus');
     }
 }

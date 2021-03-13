@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use Str;
 use App\Models\Pengumuman;
+use Str;
 
 class PengumumanController extends Controller
 {
@@ -17,7 +17,7 @@ class PengumumanController extends Controller
      */
     public function index()
     {
-        $pengumuman = Pengumuman::all();
+        $pengumuman = Pengumuman::with(['user'])->get();
         return view('admin.pengumuman.index',compact('pengumuman'));
     }
 
@@ -40,7 +40,7 @@ class PengumumanController extends Controller
     public function store(Request $request)
     {
         $request->request->add([
-            'slug' => Str::slug($request->judul_pengumuman),
+            'slug' => Str::slug($request->judul),
             'tgl' => date('Y-m-d'),
             'user_id' => auth()->user()->id,
         ]);

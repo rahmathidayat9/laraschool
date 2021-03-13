@@ -38,7 +38,7 @@
             <!-- Follow Us -->
             <div class="follow-us">
                 <span>Follow us</span>
-                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                <a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a>
             </div>
         </div>
 

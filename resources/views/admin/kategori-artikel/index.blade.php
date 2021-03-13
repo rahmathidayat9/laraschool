@@ -1,6 +1,6 @@
 @extends('layouts.backend.app',[
-    'title' => 'Manage Pengumuman',
-    'contentTitle' => 'Manage Pengumuman',
+    'title' => 'Manage Kategori Artikel',
+    'contentTitle' => 'Manage Kategori Artikel',
 ])
 @push('css')
 <!-- DataTables -->
@@ -12,16 +12,14 @@
     <div class="col">
         <div class="card">
             <div class="card-header">
-                <a href="{{ route('admin.pengumuman.create') }}" class="btn btn-primary btn-sm">Tambah Data</a>
+                <a href="{{ route('admin.kategori-artikel.create') }}" class="btn btn-primary btn-sm">Tambah Data</a>
             </div>
             <div class="card-body table-responsive">
                 <table id="dataTable1" class="table table-bordered table-hover">
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>Judul</th>
-                  <th>Author</th>
-                  <th>Tgl Upload</th>
+                  <th>Nama Kategori</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -30,29 +28,21 @@
                     $no=1;
                 @endphp
 
-                @foreach($pengumuman as $pn)
+                @foreach($kategoriArtikel as $ktgArt)
                 <tr>
                   <td>{{ $no++ }}</td>
-                  <td>{{ $pn->judul }}</td>
-                  <td>{{ $pn->user->name }}</td>
-                  <td>{{ $pn->tgl }}</td>
+                  <td>{{ $ktgArt->nama_kategori }}</td>
                   
                   <td>
-                    @if(auth()->user()->id == $pn->user_id)
                     <div class="row ml-2">
-                        <a href="{{ route('admin.pengumuman.edit',$pn->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit fa-fw"></i></a>
-                        
-                        <form method="POST" action="{{ route('admin.pengumuman.destroy',$pn->id) }}">
+                        <a href="{{ route('admin.kategori-artikel.edit',$ktgArt->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit fa-fw"></i></a>
+
+                        <form method="POST" action="{{ route('admin.kategori-artikel.destroy',$ktgArt->id) }}">
                             @csrf
                             @method('DELETE')
                             <button onclick="return confirm('Yakin hapus ?')" type="submit" class="btn btn-danger btn-sm ml-2"><i class="fas fa-trash fa-fw"></i></button>
                         </form>
                     </div>
-                    @else
-                    <a href="javasript:void(0)" class="btn btn-danger btn-sm">
-                    <i class="fas fa-ban"></i> No Action Available
-                    </a>
-                    @endif
                   </td>
                 </tr>
                 @endforeach

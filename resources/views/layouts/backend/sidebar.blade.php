@@ -48,6 +48,14 @@
           </a>
         </li>
         <li class="nav-item">
+          <a href="{{ route('admin.kategori-artikel.index') }}" class="nav-link {{ Request::segment(2) == 'kategori-artikel' ? 'active' : '' }}">
+            <i class="nav-icon far fa-circle"></i>
+            <p>
+              Kategori Artikel
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
           <a href="{{ route('admin.pengumuman.index') }}" class="nav-link {{ Request::segment(2) == 'pengumuman' ? 'active' : '' }}">
             <i class="nav-icon fas fa-info"></i>
             <p>
