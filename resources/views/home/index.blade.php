@@ -18,7 +18,7 @@
 </section>
 <!-- ##### Hero Area End ##### -->
 
-<div class="row mt-5">
+<div class="regular-page-area section-padding-100 mt-5 mb-4">
     <div class="col-lg-9 mx-auto">
         <div class="card">
             <div class="card-header">Laraschool</div>
@@ -70,7 +70,8 @@
 </section>
 @endif
 
-<!-- ##### Blog Area Start ##### -->
+@if($artikel->count() > 0)
+<!-- ##### Artikel ##### -->
 <section class="blog-area section-padding-100-0 mb-50">
     <div class="container">
         <div class="row">
@@ -89,7 +90,7 @@
                         <div class="card-header">
                             {{ $art->judul }}
 
-                            <span class="badge badge-danger float-right">by : {{ $art->user->name }}</span>
+                            <span class="badge badge-danger float-right">Author : {{ $art->user->name }}</span>
                         </div>
                         <div class="card-body">
                             <img src="{{ asset($art->getThumbnail()) }}" width="100%" style="height: 270px; object-fit: cover; object-position: center;">
@@ -101,15 +102,17 @@
                             <a href="{{ route('artikel.show',$art->slug) }}" class="btn btn-primary btn-sm">Selengkapnya</a>
                         </div>
                         <div class="card-footer">
-                            <div class="row">
-                                
-                            </div>
+                                <span class="badge badge-primary float-right">kategori : {{ $art->kategoriArtikel->nama_kategori }}</span>
                         </div>
                     </div>
                 </div>
             @endforeach
+        </div>
+        <div class="row mt-3">
             <a href="{{ route('artikel') }}" class="alert alert-success alert-link mx-auto mt-3">Lihat Semua Artikel</a>
         </div>
     </div>
 </section>
+@endif
+
 @stop

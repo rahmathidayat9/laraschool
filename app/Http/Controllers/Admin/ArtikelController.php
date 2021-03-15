@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Events\ArtikelDeleteEvent;
 use App\Services\SummernoteService;
 use App\Services\UploadService;
 use App\Models\Artikel;
 use App\Models\KategoriArtikel;
 use Str;
+use File;
 
 class ArtikelController extends Controller
 {
@@ -118,6 +120,8 @@ class ArtikelController extends Controller
     {   
         $this->authorize('delete',$artikel);
 
+        event(new ArtikelDeleteEvent($artikel));
+        
         $artikel->delete();
         return redirect()->route('admin.artikel.index')->with('success','Data berhasil dihapus');
     }

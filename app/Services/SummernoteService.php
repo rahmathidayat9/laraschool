@@ -6,7 +6,7 @@ use Str;
 
 class SummernoteService
 {
-	public function imageUpload($path)
+	public function imageUpload()
 	{
 		$content = request()->input('deskripsi');
         $dom = new \DomDocument();

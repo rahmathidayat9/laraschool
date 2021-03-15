@@ -40,9 +40,9 @@
                   <td>
                     @if(auth()->user()->id == $art->user_id)
                     <div class="row ml-2">
-                        <a href="{{ route('admin.pengumuman.edit',$art->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit fa-fw"></i></a>
+                        <a href="{{ route('admin.artikel.edit',$art->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit fa-fw"></i></a>
                         
-                        <form method="POST" action="{{ route('admin.pengumuman.destroy',$art->id) }}">
+                        <form method="POST" action="{{ route('admin.artikel.destroy',$art->id) }}">
                             @csrf
                             @method('DELETE')
                             <button onclick="return confirm('Yakin hapus ?')" type="submit" class="btn btn-danger btn-sm ml-2"><i class="fas fa-trash fa-fw"></i></button>
