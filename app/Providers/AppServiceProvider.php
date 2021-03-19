@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 
 use Illuminate\Pagination\Paginator;
 use Blade;
+use URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,10 +27,24 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Paginator::useBootstrap();
+        /*
+            Make Your Url Force Https 
+        */
+        // URL::forceScheme('https');
+        //
 
+        /*
+            Bootstrap Pagination Style
+        */
+        Paginator::useBootstrap();
+        //
+
+        /***
+            Blade Directive , example using : @example or @example('expression') 
+        */
         Blade::directive('count',function($expression){
             return "<?php echo DB::table($expression)->count() ?>";
         });   
+        //
     }
 }

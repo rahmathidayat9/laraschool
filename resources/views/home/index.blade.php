@@ -63,7 +63,8 @@
                 </div>
             </div>
             @endforeach
-
+        </div>
+        <div class="row">
             <a href="{{ route('pengumuman') }}" class="alert alert-success alert-link mx-auto">Lihat Semua Pengumuman</a>
         </div>
     </div>
@@ -93,7 +94,7 @@
                             <span class="badge badge-danger float-right">Author : {{ $art->user->name }}</span>
                         </div>
                         <div class="card-body">
-                            <img src="{{ asset($art->getThumbnail()) }}" width="100%" style="height: 270px; object-fit: cover; object-position: center;">
+                            <img src="{{ asset($art->getThumbnail()) }}" width="100%" style="height: 300px; object-fit: cover; object-position: center;">
 
                             <div class="card-text mt-3">
                                 {!! Str::limit($art->deskripsi) !!}

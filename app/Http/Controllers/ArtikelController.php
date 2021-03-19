@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\ArtikelRequest as Request;
 
 use App\Models\Artikel;
 
@@ -21,13 +21,9 @@ class ArtikelController extends Controller
 
     public function search(Request $request)
     {	
-    	$this->validate($request,[
-    		'keyword' => 'required|string',
-    	]);
-
-    	$artikel = Artikel::with(['user','kategoriArtikel'])->where(function($query){
-    		$query->where('judul','like','%'.request()->keyword.'%')
-    		->orWhere('deskripsi','like','%'.request()->keyword.'%');
+    	$artikel = Artikel::with(['user','kategoriArtikel'])->where(function($query) use ($request){
+    		$query->where('judul','like','%'.$request->keyword.'%')
+            ->orWhere('deskripsi','like','%'.$request->keyword.'%');
     	})->paginate(4);
 
     	return view('artikel.index',compact('artikel'));

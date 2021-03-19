@@ -83,8 +83,9 @@ class ArtikelController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Artikel $artikel)
-    {
-        return view('admin.artikel.edit',compact('artikel'));
+    {   
+        $kategoriArtikel = KategoriArtikel::get();
+        return view('admin.artikel.edit',compact('artikel','kategoriArtikel'));
     }
 
     /**
